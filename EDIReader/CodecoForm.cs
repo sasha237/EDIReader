@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace EDIReader
 {
@@ -39,15 +41,14 @@ namespace EDIReader
             mth = Regex.Match(@":b", @"^(\w+)(:\w*){0,1}(:\w*){0,1}");
             ic = mth.Groups.Count;
 
-            return;
 
             if (openFileDialog1.ShowDialog() != DialogResult.OK)
                 return;
             string sFileName = openFileDialog1.FileName;
-            MessageItemContainer cod = new MessageItemContainer(System.IO.File.ReadAllText(sFileName));
-            string str = cod.GetRegexString();
-            CODECOItem item = new CODECOItem(System.IO.File.ReadAllText(@"C:\Program Files (x86)\Baplie\Sample1.Edi"), str);
 
+            string str = TemplateDictionary.Instance().GetMessageRegexp(sFileName);
+
+            CODECOItem item = new CODECOItem(System.IO.File.ReadAllText(@"C:\Program Files (x86)\Baplie\Sample1.Edi"), str);
         }
     }
 }
