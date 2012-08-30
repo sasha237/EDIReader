@@ -8,7 +8,8 @@ Consists of:
 
 Updates
 =========
+Version 0.11.<br>
+Created prototype of core.<br>
 
-Version 0.1
-Created repository.
+Version 0.1.<br>
 Created StandardCleaner, which allows to convert rules from edifact standard to XML.
