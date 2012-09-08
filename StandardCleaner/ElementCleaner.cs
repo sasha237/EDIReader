@@ -79,7 +79,7 @@ namespace StandardCleaner
             TextWriter fileStream = null;
             item = new ElementItem(sId, sName, sDescr, sRepr);
             s = new XmlSerializer(item.GetType());
-            fileStream = new StreamWriter(FileUtils.GetComponentPath(item.m_Id));
+            fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
             s.Serialize(fileStream, item);
             fileStream.Close();
         }

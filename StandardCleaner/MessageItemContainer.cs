@@ -10,42 +10,42 @@ namespace StandardCleaner
     public class MessageItemContainer
     {
         [XmlAttribute("Name")]
-        public string m_sName;
+        public string Name;
         [XmlElement("Item")]
-        public List<MessageItem> m_items;
+        public List<MessageItem> items;
         [XmlIgnoreAttribute]
-        string[] m_sLines;
+        string[] sLines;
         public void Parse(string sName, string sInputLine)
         {
-            m_sName = sName;
-            m_items = new List<MessageItem>();
+            Name = sName;
+            items = new List<MessageItem>();
             if (string.IsNullOrEmpty(sInputLine))
                 return;
-            m_sLines = sInputLine.Split("\r\n".ToCharArray());
+            sLines = sInputLine.Split("\r\n".ToCharArray());
             MessageItem cur = null;
             int iLevel = -1;
-            foreach (string el in m_sLines)
+            foreach (string el in sLines)
             {
                 string sLine = el.Trim();
                 if (string.IsNullOrEmpty(sLine))
                     continue;
                 MessageItem item = new MessageItem();
                 item.Parse(sLine);
-                if (string.IsNullOrEmpty(item.m_sName))
+                if (string.IsNullOrEmpty(item.sName))
                     continue;
-                item.m_parent = cur;
+                item.parent = cur;
                 if (cur == null)
-                    m_items.Add(item);
+                    items.Add(item);
                 else
-                    cur.m_childs.Add(item);
-                if (!string.IsNullOrEmpty(item.m_sTail))
+                    cur.childs.Add(item);
+                if (!string.IsNullOrEmpty(item.sTail))
                 {
-                    int iCount = item.m_sTail.Count(c => c == '+');
+                    int iCount = item.sTail.Count(c => c == '+');
                     if (iCount != 0)
                     {
-                        for (int i = item.m_sTail.Length - 1; i >= 0; i--)
+                        for (int i = item.sTail.Length - 1; i >= 0; i--)
                         {
-                            if (item.m_sTail[i] == '+')
+                            if (item.sTail[i] == '+')
                             {
                                 if (iLevel < i)
                                 {
@@ -55,7 +55,7 @@ namespace StandardCleaner
                                 }
                                 if (iLevel == i)
                                 {
-                                    cur = cur.m_parent;
+                                    cur = cur.parent;
                                     iLevel--;
                                     continue;
                                 }

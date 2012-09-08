@@ -16,43 +16,6 @@ namespace StandardCleaner
             InitializeComponent();
         }
 
-        private void Folderbutton_Click(object sender, EventArgs e)
-        {
-            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            MessageCleaner.Parse(folderBrowserDialog1.SelectedPath);
-
-        }
-
-
-        private void Componentbutton_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            ComponentCleaner.Parse(openFileDialog1.FileName);
-        }
-
-        private void Elementbutton_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            ElementCleaner.Parse(openFileDialog1.FileName);
-        }
-
-        private void ExpandElementbutton_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            ExpandElementCleaner.Parse(openFileDialog1.FileName);
-        }
-
-        private void SelectTagbutton_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
-                return;
-            TagCleaner.Parse(openFileDialog1.FileName);
-        }
-
         private void Allbutton_Click(object sender, EventArgs e)
         {
             string sRootPath = FoldertextBox.Text;
@@ -80,6 +43,8 @@ namespace StandardCleaner
             string sEDSD = sRootPath + "\\EDSD\\EDSD." + suffix;
             string sIDSD = sRootPath + "\\IDSD\\IDSD." + suffix;
             string sUNCL = sRootPath + "\\UNCL\\UNCL." + suffix;
+            string sELS = sRootPath + "\\ELS." + suffix;
+            string sUUU = sRootPath + "\\UUU." + suffix;
             if (!CheckFile(sEDCD) ||
                 !CheckFile(sIDCD) ||
                 !CheckFile(sEDED) ||
@@ -87,7 +52,9 @@ namespace StandardCleaner
                 !CheckDir(sIDMD) ||
                 !CheckFile(sEDSD) ||
                 !CheckFile(sIDSD) ||
-                !CheckFile(sUNCL))
+                !CheckFile(sUNCL) ||
+                !CheckFile(sELS) ||
+                !CheckFile(sUUU))
                 return;
             MessageCleaner.Parse(sEDMD);
             MessageCleaner.Parse(sIDMD);
@@ -97,13 +64,11 @@ namespace StandardCleaner
             ExpandElementCleaner.Parse(sUNCL);
             TagCleaner.Parse(sEDSD);
             TagCleaner.Parse(sIDSD);
+            UUUCleaner.Parse(sUUU);
+            ELSCleaner.Parse(sELS);
             MessageBox.Show("Done!");
         }
 
-        private void Folderbutton_Click_1(object sender, EventArgs e)
-        {
-
-        }
         private bool CheckFile(string sPath)
         {
             if (!System.IO.File.Exists(sPath))
@@ -127,5 +92,14 @@ namespace StandardCleaner
         {
             Close();
         }
+
+        private void Folderbutton_Click(object sender, EventArgs e)
+        {
+            if (SelectfolderBrowserDialog.ShowDialog() != DialogResult.OK)
+                return;
+            FoldertextBox.Text = SelectfolderBrowserDialog.SelectedPath.TrimEnd('\\');
+            SuffixtextBox.Text = FoldertextBox.Text.Substring(FoldertextBox.Text.Length - 3);
+        }
+
     }
 }

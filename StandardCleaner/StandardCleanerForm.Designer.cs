@@ -28,19 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Allbutton = new System.Windows.Forms.Button();
             this.FoldertextBox = new System.Windows.Forms.TextBox();
             this.Folderbutton = new System.Windows.Forms.Button();
             this.SuffixtextBox = new System.Windows.Forms.TextBox();
             this.Suffixlabel = new System.Windows.Forms.Label();
             this.Closebutton = new System.Windows.Forms.Button();
+            this.SelectfolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Allbutton
             // 
@@ -69,6 +64,7 @@
             this.Folderbutton.TabIndex = 0;
             this.Folderbutton.Text = "Select folder";
             this.Folderbutton.UseVisualStyleBackColor = true;
+            this.Folderbutton.Click += new System.EventHandler(this.Folderbutton_Click);
             // 
             // SuffixtextBox
             // 
@@ -102,7 +98,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Closebutton;
-            this.ClientSize = new System.Drawing.Size(485, 91);
+            this.ClientSize = new System.Drawing.Size(485, 90);
             this.Controls.Add(this.Closebutton);
             this.Controls.Add(this.Suffixlabel);
             this.Controls.Add(this.SuffixtextBox);
@@ -122,14 +118,13 @@
 
         #endregion
 
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Allbutton;
         private System.Windows.Forms.TextBox FoldertextBox;
         private System.Windows.Forms.Button Folderbutton;
         private System.Windows.Forms.TextBox SuffixtextBox;
         private System.Windows.Forms.Label Suffixlabel;
         private System.Windows.Forms.Button Closebutton;
+        private System.Windows.Forms.FolderBrowserDialog SelectfolderBrowserDialog;
     }
 }
 

@@ -64,12 +64,12 @@ namespace StandardCleaner
                     {
                         values.Add(new ElementValue(sValueId.Trim(), sValueName.Trim(), sValueDescr.Trim()));
                     }
-                    item.m_values = values;
+                    item.values = values;
                     sValueId = "";
                     sValueName = "";
                     sValueDescr = "";
                     s = new XmlSerializer(item.GetType());
-                    fileStream = new StreamWriter(FileUtils.GetComponentPath(item.m_Id));
+                    fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
                     s.Serialize(fileStream, item);
                     fileStream.Close();
                     values = new List<ElementValue>();
@@ -143,7 +143,7 @@ namespace StandardCleaner
                 values.Add(new ElementValue(sValueId.Trim(), sValueName.Trim(), sValueDescr.Trim()));
             }
             s = new XmlSerializer(item.GetType());
-            fileStream = new StreamWriter(FileUtils.GetComponentPath(item.m_Id));
+            fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
             s.Serialize(fileStream, item);
             fileStream.Close();
         }

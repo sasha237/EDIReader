@@ -51,7 +51,7 @@ namespace StandardCleaner
             TagItem item = new TagItem();
             item.Parse(sLines);
             XmlSerializer s = new XmlSerializer(item.GetType());
-            TextWriter fileStream = new StreamWriter(FileUtils.GetTagPath(item.Id));
+            TextWriter fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
             s.Serialize(fileStream, item);
             fileStream.Close();
         }

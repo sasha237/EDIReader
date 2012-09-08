@@ -8,6 +8,9 @@ Consists of:
 
 Updates
 =========
+Version 0.12.<br>
+Updated StandardCleaner. Now it can perform clean all tags for different versions of EDI fact.<br>
+
 Version 0.11.<br>
 Created prototype of core.<br>
 

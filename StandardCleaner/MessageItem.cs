@@ -10,41 +10,41 @@ namespace StandardCleaner
     public class MessageItem
     {
         [XmlIgnoreAttribute]
-        public string m_sLine;
+        public string Line;
         [XmlAttribute("Position")]
-        public string m_sPos;
+        public string sPos;
         [XmlAttribute("Id")]
-        public string m_sTag;
+        public string sTag;
         [XmlAttribute("Name")]
-        public string m_sName;
+        public string sName;
         [XmlAttribute("Rep")]
-        public string m_sS;
+        public string sS;
         [XmlIgnoreAttribute]
-        public string m_sTail;
+        public string sTail;
         [XmlAttribute("Count")]
-        public int m_iR;
+        public int iR;
         [XmlIgnoreAttribute]
-        public MessageItem m_parent;
+        public MessageItem parent;
         [XmlElement("Item")]
-        public List<MessageItem> m_childs;
+        public List<MessageItem> childs;
         public void Parse(string sInputLine)
         {
-            m_childs = new List<MessageItem>();
-            m_parent = null;
-            m_sLine = sInputLine;
-            string sLine = m_sLine.Trim();
+            childs = new List<MessageItem>();
+            parent = null;
+            Line = sInputLine;
+            string sLine = Line.Trim();
             if (string.IsNullOrEmpty(sLine))
                 return;
             int iPos = sLine.IndexOf(" ");
             if (iPos == -1)
                 return;
-            m_sPos = sLine.Substring(0, iPos).Trim();
+            sPos = sLine.Substring(0, iPos).Trim();
             sLine = sLine.Substring(iPos).Trim();
             if (sLine[1] == ' ')
                 sLine = sLine.Substring(2);
             if (sLine[0] != '-')
             {
-                m_sTag = sLine.Substring(0, 3).Trim();
+                sTag = sLine.Substring(0, 3).Trim();
                 sLine = sLine.Substring(3).Trim();
             }
             iPos = sLine.LastIndexOfAny("0123456789".ToCharArray());
@@ -57,12 +57,12 @@ namespace StandardCleaner
             {
                 return;
             }
-            m_sS = sLine.Substring(iPos2, 1).Trim();
+            sS = sLine.Substring(iPos2, 1).Trim();
             string sBuf = sLine.Substring(iPos2 + 1, iPos - iPos2).Trim();
-            m_sTail = sLine.Substring(iPos + 1).Trim();
-            m_sTail = new string(m_sTail.ToCharArray().Reverse().ToArray());
-            int.TryParse(sBuf, out m_iR);
-            m_sName = sLine.Substring(0, iPos2).Trim();
+            sTail = sLine.Substring(iPos + 1).Trim();
+            sTail = new string(sTail.ToCharArray().Reverse().ToArray());
+            int.TryParse(sBuf, out iR);
+            sName = sLine.Substring(0, iPos2).Trim();
         }
     }
 }

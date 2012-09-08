@@ -5,56 +5,54 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
+
 namespace StandardCleaner
 {
-    public class ComponentCleaner
+    public class ELSCleaner
     {
         public static void Parse(string sFilePath)
         {
             string[] sLines = System.IO.File.ReadAllLines(sFilePath);
+            string sLine = "";
             List<string> miniList = new List<string>();
             Queue<string> lineQ = new Queue<string>(sLines.ToArray());
             while (lineQ.Count > 0)
             {
-                string sLine = lineQ.Peek().Trim();
-                if (string.IsNullOrEmpty(sLine) || sLine.IndexOf("-----") != 0)
+                sLine = lineQ.Peek().Trim();
+                if (string.IsNullOrEmpty(sLine) || sLine.IndexOf("-----") != -1)
                 {
                     lineQ.Dequeue();
                     continue;
                 }
-                lineQ.Dequeue();
                 break;
             }
-            while(lineQ.Count>0)
+            while (lineQ.Count > 0)
             {
-                string sLine = lineQ.Dequeue();
+                sLine = lineQ.Dequeue().Trim();
                 if (string.IsNullOrEmpty(sLine))
-                {
-                    miniList.Add(sLine);
                     continue;
-                }
-                if (sLine[0] != '-')
+                if (sLine.IndexOf("-----------------------") != -1)
                 {
-                    miniList.Add(sLine);
-                }
-                else
-                {
-                    CreateFile(miniList.ToArray());
+                    CreateFile(miniList);
                     miniList = new List<string>();
                     continue;
                 }
+                miniList.Add(sLine);
             }
-            CreateFile(miniList.ToArray());
+            CreateFile(miniList);
         }
-        static void CreateFile(string[] sLines)
+        static void CreateFile(List<string> miniList)
         {
-            ComponentItem item = new ComponentItem();
-            item.Parse(sLines);
-            XmlSerializer s = new XmlSerializer(item.GetType());
-            TextWriter fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
+            ElSItem item = new ElSItem();
+            item.Parse(miniList);
+
+            XmlSerializer s = null;
+            TextWriter fileStream = null;
+            s = new XmlSerializer(item.GetType());
+            fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
             s.Serialize(fileStream, item);
             fileStream.Close();
         }
+
     }
-    
 }

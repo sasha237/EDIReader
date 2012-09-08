@@ -43,7 +43,7 @@ namespace StandardCleaner
                 MessageItemContainer con = new MessageItemContainer();
                 con.Parse(sName, result);
                 XmlSerializer s = new XmlSerializer(con.GetType());
-                TextWriter fileStream = new StreamWriter(FileUtils.GetMessagePath(con.m_sName));
+                TextWriter fileStream = new StreamWriter(FileUtils.GetPath(con.Name));
                 s.Serialize(fileStream, con);
                 fileStream.Close();
             }

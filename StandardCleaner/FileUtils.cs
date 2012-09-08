@@ -8,23 +8,35 @@ namespace StandardCleaner
 {
     public static class FileUtils
     {
-        public static string GetTagPath(string sId)
+        public static string GetPath(string sId)
         {
-            return GetPath(sId, "tags");
+            if (string.IsNullOrEmpty(sId))
+                return "";
+            if (sId.Length == 3)
+                return GetTagPath(sId);
+            if (sId.Length == 6)
+                return GetMessagePath(sId);
+            if (sId.IndexOfAny("0123456789".ToCharArray()) == 0)
+                return GetElementPath(sId);
+            return GetComponentPath(sId);
         }
-        public static string GetMessagePath(string sId)
+        static string GetTagPath(string sId)
         {
-            return GetPath(sId, "messages");
+            return GetFullPath(sId, "tags");
         }
-        public static string GetComponentPath(string sId)
+        static string GetMessagePath(string sId)
         {
-            return GetPath(sId, "components");
+            return GetFullPath(sId, "messages");
         }
-        public static string GetElementPath(string sId)
+        static string GetComponentPath(string sId)
         {
-            return GetPath(sId, "elements");
+            return GetFullPath(sId, "components");
         }
-        static string GetPath(string sId, string sSubFolder)
+        static string GetElementPath(string sId)
+        {
+            return GetFullPath(sId, "elements");
+        }
+        static string GetFullPath(string sId, string sSubFolder)
         {
             string sPath = "templates\\"+sSubFolder+"\\";
             if (!Directory.Exists(sPath))
