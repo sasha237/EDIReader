@@ -10,40 +10,44 @@ namespace EDIReader
     public class MessageItem : BaseItem
     {
         [XmlIgnoreAttribute]
-        public string m_sLine;
+        public string sLine;
         [XmlAttribute("Position")]
-        public string m_sPos;
+        public string sPos;
         [XmlAttribute("Id")]
-        public string m_sTag;
+        public string sTag;
         [XmlAttribute("Name")]
-        public string m_sName;
+        public string sName;
         [XmlAttribute("Rep")]
-        public string m_sS;
+        public string sS;
         [XmlIgnoreAttribute]
-        public string m_sTail;
+        public string sTail;
         [XmlAttribute("Count")]
-        public int m_iR;
+        public int iR;
         [XmlIgnoreAttribute]
-        public MessageItem m_parent;
+        public MessageItem parent;
         [XmlElement("Item")]
-        public List<MessageItem> m_childs;
+        public List<MessageItem> childs;
         public override string GetRegexString()
         {
             StringBuilder str = new StringBuilder();
             str.Append("(");
-            if (m_childs.Count > 0)
+            if (childs.Count > 0)
             {
-                foreach (MessageItem item in m_childs)
+                foreach (MessageItem item in childs)
                 {
                     str.Append(item.GetRegexString());
                 }
             }
             else
             {
-                str.Append(m_sTag);
+                str.Append(sTag);
             }
-            str.AppendFormat("){{{0},{1}}}", (m_sS == "M" ? 1 : 0), m_iR);
+            str.AppendFormat("){{{0},{1}}}", (sS == "M" ? 1 : 0), iR);
             return str.ToString();
+        }
+        public override string GetId()
+        {
+            return sTag;
         }
     }
 }

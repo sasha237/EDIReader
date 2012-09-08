@@ -8,6 +8,11 @@ namespace StandardCleaner
 {
     public static class FileUtils
     {
+        const string tags = "tags";
+        const string messages = "messages";
+        const string components = "components";
+        const string elements = "elements";
+        const string templates = "templates";
         public static string GetPath(string sId)
         {
             if (string.IsNullOrEmpty(sId))
@@ -22,26 +27,26 @@ namespace StandardCleaner
         }
         static string GetTagPath(string sId)
         {
-            return GetFullPath(sId, "tags");
+            return GetFullPath(sId, tags);
         }
         static string GetMessagePath(string sId)
         {
-            return GetFullPath(sId, "messages");
+            return GetFullPath(sId, messages);
         }
         static string GetComponentPath(string sId)
         {
-            return GetFullPath(sId, "components");
+            return GetFullPath(sId, components);
         }
         static string GetElementPath(string sId)
         {
-            return GetFullPath(sId, "elements");
+            return GetFullPath(sId, elements);
         }
         static string GetFullPath(string sId, string sSubFolder)
         {
-            string sPath = "templates\\"+sSubFolder+"\\";
+            string sPath = templates + "\\" + sSubFolder + "\\";
             if (!Directory.Exists(sPath))
                 Directory.CreateDirectory(sPath);
-            return sPath + "_" +sId + ".xml";
+            return sPath + "_" + sId + ".xml";
         }
     }
 }

@@ -21,7 +21,16 @@ namespace EDIReader
         public List<ComponenItemLine> Lines {get;set;}
         public override string GetRegexString()
         {
-            return "";
+            StringBuilder str = new StringBuilder();
+            foreach (var el in Lines)
+            {
+                str.AppendFormat(el.GetRegexString());
+            }
+            return str.ToString();
+        }
+        public override string GetId()
+        {
+            return Id;
         }
     }
     [XmlRoot("Element")]
@@ -39,7 +48,15 @@ namespace EDIReader
         public string Count { get; set; }
         public override string GetRegexString()
         {
-            return "";
+            StringBuilder str = new StringBuilder();
+            str.AppendFormat("({0}", Separators.ComponentDataElementSeparator);
+            str.AppendFormat(TemplateDictionary.Instance().GetItemRegexp(Id));
+            str.AppendFormat("){{{0},{1}}}", (Rep == "M" ? "1" : "0"), Count);
+            return str.ToString();
+        }
+        public override string GetId()
+        {
+            return Id;
         }
     }
 }

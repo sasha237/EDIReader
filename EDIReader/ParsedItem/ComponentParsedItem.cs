@@ -5,8 +5,7 @@ using System.Text;
 
 namespace EDIReader
 {
-    public abstract class BaseItem
+    public class ComponentParsedItem : BaseParsedItem
     {
-        public abstract string GetRegexString();
     }
 }

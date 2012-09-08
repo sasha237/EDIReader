@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseItem.cs" />
+    <Compile Include="ParsedItem\BaseParsedItem.cs" />
+    <Compile Include="ParsedItem\ComponentParsedItem.cs" />
+    <Compile Include="ParsedItem\ElementParsedItem.cs" />
+    <Compile Include="Item\BaseItem.cs" />
     <Compile Include="CODECOItem.cs" />
     <Compile Include="CodecoForm.cs">
       <SubType>Form</SubType>
@@ -54,18 +57,20 @@
     <Compile Include="CodecoForm.Designer.cs">
       <DependentUpon>CodecoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComponentItem.cs" />
-    <Compile Include="ElementTemplateDictionary.cs" />
-    <Compile Include="ExpandElementItem.cs" />
-    <Compile Include="MessageTemplateDictionary.cs" />
+    <Compile Include="Item\ComponentItem.cs" />
+    <Compile Include="Item\ElementItem.cs" />
+    <Compile Include="ParsedItem\MessageParsedItem.cs" />
+    <Compile Include="ParsedItem\TagParsedItem.cs" />
+    <Compile Include="Util\SeparatorsDetector.cs" />
+    <Compile Include="Util\MessageDetector.cs" />
+    <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Separators.cs" />
-    <Compile Include="TagItem.cs" />
-    <Compile Include="TagTemplateDictionary.cs" />
-    <Compile Include="TemplateDictionary.cs" />
-    <Compile Include="MessageItem.cs" />
-    <Compile Include="MessageItemContainer.cs" />
+    <Compile Include="Util\Separators.cs" />
+    <Compile Include="Item\TagItem.cs" />
+    <Compile Include="Util\TemplateDictionary.cs" />
+    <Compile Include="Item\MessageItem.cs" />
+    <Compile Include="Item\MessageItemContainer.cs" />
     <EmbeddedResource Include="CodecoForm.resx">
       <DependentUpon>CodecoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,9 +99,11 @@
     <PostBuildEvent>mkdir "$(ProjectDir)$(OutDir)templates\messages"
 mkdir "$(ProjectDir)$(OutDir)templates\tags"
 mkdir "$(ProjectDir)$(OutDir)templates\components"
+mkdir "$(ProjectDir)$(OutDir)templates\elements"
 copy "$(ProjectDir)templates\messages\*" "$(ProjectDir)$(OutDir)templates\messages\*"
 copy "$(ProjectDir)templates\tags\*" "$(ProjectDir)$(OutDir)templates\tags\*"
-copy "$(ProjectDir)templates\components\*" "$(ProjectDir)$(OutDir)templates\components\*"</PostBuildEvent>
+copy "$(ProjectDir)templates\components\*" "$(ProjectDir)$(OutDir)templates\components\*"
+copy "$(ProjectDir)templates\elements\*" "$(ProjectDir)$(OutDir)templates\elements\*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

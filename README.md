@@ -6,8 +6,14 @@ Consists of:
 - EDIReader Core
 - StandardCleaner
 
+Uses standards from here http://www.unece.org/trade/untdid/
+
+
 Updates
 =========
+Version 0.13.<br>
+Updated EDIReader. Finishing regexp creating. Starting parsed creating.<br>
+
 Version 0.12.<br>
 Updated StandardCleaner. Now it can perform clean all tags for different versions of EDI fact.<br>
 

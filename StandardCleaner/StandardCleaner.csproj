@@ -46,30 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComponentCleaner.cs" />
-    <Compile Include="ComponentItem.cs" />
-    <Compile Include="ELSCleaner.cs" />
-    <Compile Include="ElSItem.cs" />
-    <Compile Include="ExpandElementCleaner.cs" />
-    <Compile Include="ExpandElementItem.cs" />
-    <Compile Include="FileUtils.cs" />
+    <Compile Include="Cleaner\ComponentCleaner.cs" />
+    <Compile Include="Item\ComponentItem.cs" />
+    <Compile Include="Cleaner\ELSCleaner.cs" />
+    <Compile Include="Item\ElSItem.cs" />
+    <Compile Include="Cleaner\ExpandElementCleaner.cs" />
+    <Compile Include="Item\ExpandElementItem.cs" />
+    <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="StandardCleanerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StandardCleanerForm.Designer.cs">
       <DependentUpon>StandardCleanerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageCleaner.cs" />
-    <Compile Include="MessageItem.cs" />
-    <Compile Include="MessageItemContainer.cs" />
-    <Compile Include="ElementCleaner.cs" />
-    <Compile Include="ElementItem.cs" />
+    <Compile Include="Cleaner\MessageCleaner.cs" />
+    <Compile Include="Item\MessageItem.cs" />
+    <Compile Include="Item\MessageItemContainer.cs" />
+    <Compile Include="Cleaner\ElementCleaner.cs" />
+    <Compile Include="Item\ElementItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TagCleaner.cs" />
-    <Compile Include="TagItem.cs" />
-    <Compile Include="UUUCleaner.cs" />
-    <Compile Include="UUUtem.cs" />
+    <Compile Include="Cleaner\TagCleaner.cs" />
+    <Compile Include="Item\TagItem.cs" />
+    <Compile Include="Cleaner\UUUCleaner.cs" />
+    <Compile Include="Item\UUUtem.cs" />
     <EmbeddedResource Include="StandardCleanerForm.resx">
       <DependentUpon>StandardCleanerForm.cs</DependentUpon>
     </EmbeddedResource>

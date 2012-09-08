@@ -9,19 +9,19 @@ namespace EDIReader
 {
     public class CODECOItem
     {
-        string m_sInput;
-        string m_sRegex;
+        string Input;
+        string m_Regex;
         public CODECOItem(string sInput, string sRegex)
         {
-            m_sInput = sInput;
-            m_sRegex = sRegex;
+            Input = sInput;
+            m_Regex = sRegex;
             Parse();
         }
         private void Parse()
         {
-            string[] sLines = m_sInput.Trim("\r\n ".ToCharArray()).Split('\'');
+            string[] sLines = Input.Trim("\r\n ".ToCharArray()).Split('\'');
             string sSpecLine = sLines.Aggregate("", (s, i) => s + (string.IsNullOrEmpty(i) ? "" : i.Substring(0, 3)));
-            Match mth = Regex.Match(sSpecLine, m_sRegex);
+            Match mth = Regex.Match(sSpecLine, m_Regex);
             int ic = mth.Groups.Count;
         }
     }

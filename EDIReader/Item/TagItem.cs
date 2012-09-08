@@ -21,7 +21,17 @@ namespace EDIReader
         public List<TagElementItem> items;
         public override string GetRegexString()
         {
-            return "";
+            StringBuilder str = new StringBuilder();
+            str.AppendFormat("^");
+            foreach (var el in items)
+            {
+                str.AppendFormat(el.GetRegexString());
+            }
+            return str.ToString();
+        }
+        public override string GetId()
+        {
+            return Id;
         }
     }
 
@@ -40,7 +50,15 @@ namespace EDIReader
         public string Count { get; set; }
         public override string GetRegexString()
         {
-            return "";
+            StringBuilder str = new StringBuilder();
+            str.AppendFormat("({0}", Separators.DataElementSeparator);
+            str.AppendFormat(TemplateDictionary.Instance().GetItemRegexp(Id));
+            str.AppendFormat("){{{0},{1}}}",(Rep=="M"?"1":"0"),Count);
+            return str.ToString();
+        }
+        public override string GetId()
+        {
+            return Id;
         }
     }
 }

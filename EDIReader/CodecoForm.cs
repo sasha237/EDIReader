@@ -46,9 +46,14 @@ namespace EDIReader
                 return;
             string sFileName = openFileDialog1.FileName;
 
-            string str = TemplateDictionary.Instance().GetMessageRegexp(sFileName);
+//             string str = TemplateDictionary.Instance().GetMessageRegexp(sFileName);
+// 
+//             CODECOItem item = new CODECOItem(System.IO.File.ReadAllText(@"C:\Program Files (x86)\Baplie\Sample1.Edi"), str);
+        }
 
-            CODECOItem item = new CODECOItem(System.IO.File.ReadAllText(@"C:\Program Files (x86)\Baplie\Sample1.Edi"), str);
+        private void CheckDictionarybutton_Click(object sender, EventArgs e)
+        {
+            TemplateDictionary.Instance().LoadAll();
         }
     }
 }
