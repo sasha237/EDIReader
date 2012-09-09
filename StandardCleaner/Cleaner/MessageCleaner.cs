@@ -21,7 +21,7 @@ namespace StandardCleaner
                 {
                     sWrongFiles += Environment.NewLine + el;
                     continue;
-                }
+                } 
                 sFile = sFile.Substring(iPos).Replace("\r", "\n").Replace("\n\n", "\n");
                 string[] sLines = sFile.Split('\n');
                 List<string> newLines = new List<string>();

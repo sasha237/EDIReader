@@ -14,20 +14,15 @@ namespace EDIReader
             sLine = sLine.Substring(3);
             if (sLine.Length != 6)
                 return;
-            Separators.ComponentDataElementSeparator = sLine[0].ToString();
-            Separators.DataElementSeparator = sLine[1].ToString();
-            Separators.DecimalNotification = sLine[2].ToString();
-            Separators.ReleaseIndicator = sLine[3].ToString();
-            Separators.SegmentTerminator = sLine[5].ToString();
-            CorrectString(ref Separators.ComponentDataElementSeparator);
-            CorrectString(ref Separators.DataElementSeparator);
-            CorrectString(ref Separators.DecimalNotification);
-            CorrectString(ref Separators.ReleaseIndicator);
-            CorrectString(ref Separators.SegmentTerminator);
+            Separators.ComponentDataElementSeparator = sLine[0];
+            Separators.DataElementSeparator = sLine[1];
+            Separators.DecimalNotification = sLine[2];
+            Separators.ReleaseIndicator = sLine[3];
+            Separators.SegmentTerminator = sLine[5];
         }
-        static void CorrectString(ref string str)
+        public static string CorrectString(string str)
         {
-            str = str.Replace("+", "\\+");
+            return str.Replace("+", "\\+");
         }
     }
 }

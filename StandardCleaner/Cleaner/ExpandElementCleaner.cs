@@ -146,6 +146,6 @@ namespace StandardCleaner
             fileStream = new StreamWriter(FileUtils.GetPath(item.Id));
             s.Serialize(fileStream, item);
             fileStream.Close();
-        }
+        } 
     }
 }

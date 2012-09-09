@@ -18,7 +18,7 @@ namespace EDIReader
         [XmlAttribute("Note")]
         public string Note { get; set; }
         [XmlElement("Element")]
-        public List<ComponenItemLine> Lines {get;set;}
+        public List<ComponentItemLine> Lines {get;set;}
         public override string GetRegexString()
         {
             StringBuilder str = new StringBuilder();
@@ -34,7 +34,7 @@ namespace EDIReader
         }
     }
     [XmlRoot("Element")]
-    public class ComponenItemLine : BaseItem
+    public class ComponentItemLine : BaseItem
     {
         [XmlAttribute("Position")]
         public string Line { get; set; }
@@ -49,7 +49,7 @@ namespace EDIReader
         public override string GetRegexString()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendFormat("({0}", Separators.ComponentDataElementSeparator);
+            str.AppendFormat("({0}", SeparatorsDetector.CorrectString(Separators.ComponentDataElementSeparator.ToString()));
             str.AppendFormat(TemplateDictionary.Instance().GetItemRegexp(Id));
             str.AppendFormat("){{{0},{1}}}", (Rep == "M" ? "1" : "0"), Count);
             return str.ToString();

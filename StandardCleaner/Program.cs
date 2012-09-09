@@ -17,5 +17,5 @@ namespace StandardCleaner
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new StandardCleanerForm());
         }
-    }
+    } 
 }

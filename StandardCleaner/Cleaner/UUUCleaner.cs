@@ -42,7 +42,7 @@ namespace StandardCleaner
         {
             UUUtem item = new UUUtem();
             item.Parse(miniList);
-
+             
             XmlSerializer s = null;
             TextWriter fileStream = null;
             UUUTagItem tagItem = item.GetTagItem();
@@ -50,13 +50,19 @@ namespace StandardCleaner
             fileStream = new StreamWriter(FileUtils.GetPath(tagItem.Id));
             s.Serialize(fileStream, tagItem);
             fileStream.Close();
-            List<UUUComponentItem> components = item.GetComponentItem();
-            foreach (var el in components)
+            foreach (var el in item.GetComponentItem())
             {
                 s = new XmlSerializer(el.GetType());
                 fileStream = new StreamWriter(FileUtils.GetPath(el.Id));
                 s.Serialize(fileStream, el);
                 fileStream.Close();
+                foreach (var elem in el.GetElements())
+                {
+                    s = new XmlSerializer(elem.GetType());
+                    fileStream = new StreamWriter(FileUtils.GetPath(elem.Id));
+                    s.Serialize(fileStream, elem);
+                    fileStream.Close();
+                }
             }
         }
     }

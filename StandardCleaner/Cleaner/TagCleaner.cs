@@ -45,7 +45,7 @@ namespace StandardCleaner
                 }
             }
             CreateFile(miniList.ToArray());
-        }
+        } 
         static void CreateFile(string[] sLines)
         {
             TagItem item = new TagItem();

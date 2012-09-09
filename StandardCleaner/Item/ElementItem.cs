@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 
 namespace StandardCleaner
-{
+{ 
     [XmlRoot("Root")]
     public class ElementItem
     {

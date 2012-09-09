@@ -53,6 +53,5 @@ namespace StandardCleaner
             s.Serialize(fileStream, item);
             fileStream.Close();
         }
-
     }
 }

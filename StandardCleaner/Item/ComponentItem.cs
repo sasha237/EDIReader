@@ -18,10 +18,10 @@ namespace StandardCleaner
         [XmlAttribute("Note")]
         public string Note { get; set; }
         [XmlElement("Element")]
-        public List<ComponenItemLine> Lines {get;set;}
+        public List<ComponentItemLine> Lines {get;set;}
         public void Parse(string[] sInputLines)
         {
-            Lines = new List<ComponenItemLine>();
+            Lines = new List<ComponentItemLine>();
             if (sInputLines.Length == 0)
                 return;
             Queue<string> lineQ = new Queue<string>(sInputLines.ToArray());
@@ -64,7 +64,7 @@ namespace StandardCleaner
                 break;
             }
             List<string> miniList = new List<string>();
-            ComponenItemLine item = null;
+            ComponentItemLine item = null;
             while (lineQ.Count > 0)
             {
                 sLine = lineQ.Dequeue();
@@ -79,14 +79,14 @@ namespace StandardCleaner
                 }
                 else
                 {
-                    item = new ComponenItemLine();
+                    item = new ComponentItemLine();
                     item.Parse(miniList);
                     Lines.Add(item);
                     miniList = new List<string>();
                     miniList.Add(sLine);
                 }
             }
-            item = new ComponenItemLine();
+            item = new ComponentItemLine();
             item.Parse(miniList);
             Lines.Add(item);
             miniList = new List<string>();
@@ -100,9 +100,9 @@ namespace StandardCleaner
                 Note += " " + sLine;
             }
         }
-    }
+    } 
     [XmlRoot("Element")]
-    public class ComponenItemLine
+    public class ComponentItemLine
     {
         [XmlAttribute("Position")]
         public string Line { get; set; }

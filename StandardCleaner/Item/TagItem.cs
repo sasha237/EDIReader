@@ -136,5 +136,5 @@ namespace StandardCleaner
             Rep = sLine.Substring(sLine.Length - 1);
             Name = sLine.Substring(0, sLine.Length - 1).Trim();
         }
-    }
+    } 
 }

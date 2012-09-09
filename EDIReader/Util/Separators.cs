@@ -7,10 +7,10 @@ namespace EDIReader
 {
     public static class Separators
     {
-        public static string ComponentDataElementSeparator = ":";
-        public static string DataElementSeparator = "\\+";
-        public static string ReleaseIndicator = "?";
-        public static string DecimalNotification = ".";
-        public static string SegmentTerminator = "'"; 
+        public static char ComponentDataElementSeparator = ':';
+        public static char DataElementSeparator = '+';
+        public static char ReleaseIndicator = '?';
+        public static char DecimalNotification = '.';
+        public static char SegmentTerminator = '\''; 
     }
 }

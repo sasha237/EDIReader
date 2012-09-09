@@ -62,10 +62,7 @@ namespace EDIReader
 
             StringBuilder str = new StringBuilder();
 
-            if (sPre == "an" || sPre == "a")
-                str.Append("[\\w\\s]");
-            else
-                str.Append("\\d");
+            str.Append("[\\w\\s]");
             if (bMust)
             {
                 str.AppendFormat("{{{0}}}", sCount);

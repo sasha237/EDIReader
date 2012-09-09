@@ -5,16 +5,27 @@ using System.Text;
 
 namespace EDIReader
 {
-    public class BaseParsedItem
+    public abstract class BaseParsedItem
     {
-        List<Tuple<string, string>> values;
-        List<BaseParsedItem> childs;
-        BaseParsedItem parent;
+        public List<BaseParsedItem> childs;
+        public string _Id;
+        public string _Name;
+        public string _Description;
+        public string _ValueId;
+        public string _ValueName;
+        public string _ValueDescription;
         public BaseParsedItem()
         {
-            values = new List<Tuple<string, string>>();
             childs = new List<BaseParsedItem>();
-            parent = null;
+        }
+        public abstract bool Parse(string sInputLine, string sName);
+        public virtual void FillList(ref List<BaseParsedItem> items)
+        {
+            items.Add(this);
+            foreach (var el in childs)
+            {
+                el.FillList(ref items);
+            }
         }
     }
 }

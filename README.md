@@ -11,6 +11,9 @@ Uses standards from here http://www.unece.org/trade/untdid/
 
 Updates
 =========
+Version 0.14.<br>
+Updated EDIReader, StandardCleaner. Added table.<br>
+
 Version 0.13.<br>
 Updated EDIReader. Finishing regexp creating. Starting parsed creating.<br>
 

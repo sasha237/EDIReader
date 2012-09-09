@@ -51,7 +51,7 @@ namespace EDIReader
         public override string GetRegexString()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendFormat("({0}", Separators.DataElementSeparator);
+            str.AppendFormat("({0}", SeparatorsDetector.CorrectString(Separators.DataElementSeparator.ToString()));
             str.AppendFormat(TemplateDictionary.Instance().GetItemRegexp(Id));
             str.AppendFormat("){{{0},{1}}}",(Rep=="M"?"1":"0"),Count);
             return str.ToString();

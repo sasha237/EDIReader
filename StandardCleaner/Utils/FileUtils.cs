@@ -14,7 +14,7 @@ namespace StandardCleaner
         const string elements = "elements";
         const string templates = "templates";
         public static string GetPath(string sId)
-        {
+        { 
             if (string.IsNullOrEmpty(sId))
                 return "";
             if (sId.Length == 3)

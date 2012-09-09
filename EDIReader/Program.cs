@@ -15,7 +15,7 @@ namespace EDIReader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CodecoForm());
+            Application.Run(new EDIReader());
         }
     }
 }

@@ -108,7 +108,6 @@ namespace StandardCleaner
         }
     }
 
-
     [XmlRoot("Root")]
     public class UUUComponentItem
     {
@@ -128,6 +127,20 @@ namespace StandardCleaner
         {
             Id = Name = Description = Note = Count = "";
             Lines = new List<UUUComponenItemLine>();
+        }
+        public List<UUUComponenElement> GetElements()
+        {
+            List<UUUComponenElement> items = new List<UUUComponenElement>();
+            foreach (var el in Lines)
+            {
+                UUUComponenElement item = new UUUComponenElement();
+                item.Id = el.Id;
+                item.Name = el.Name;
+                item.Count = el.Count;
+                item.Description = "";
+                items.Add(item);
+            }
+            return items;
         }
     }
     [XmlRoot("Element")]
@@ -149,8 +162,40 @@ namespace StandardCleaner
         }
     }
 
+    [XmlRoot("Root")] 
+    public class UUUComponenElement
+    {
+        [XmlAttribute("Id")]
+        public string Id { get; set; }
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
+        [XmlAttribute("Description")]
+        public string Description { get; set; }
+        [XmlAttribute("Count")]
+        public string Count { get; set; }
+        [XmlElement("Value")]
+        List<UUUComponenElementLine> items;
 
-
+        public UUUComponenElement()
+        {
+            Id = Name = Description = Count = "";
+            items = new List<UUUComponenElementLine>();
+        }
+    }
+    [XmlRoot("Value")]
+    public class UUUComponenElementLine
+    {
+        [XmlAttribute("Id")]
+        public string Id { get; set; }
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
+        [XmlAttribute("Description")]
+        public string Description { get; set; }
+        public UUUComponenElementLine()
+        {
+            Id = Name = Description = "";
+        }
+    }
     public class UUUElementItem
     {
         public string Position { get; set; }

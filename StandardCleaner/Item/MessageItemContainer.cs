@@ -8,7 +8,7 @@ namespace StandardCleaner
 {
     [XmlRoot("Message")]
     public class MessageItemContainer
-    {
+    { 
         [XmlAttribute("Name")]
         public string Name;
         [XmlElement("Item")]

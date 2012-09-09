@@ -62,6 +62,31 @@ namespace EDIReader
                 return GetElementRegexp(sId);
             return GetComponentRegexp(sId);
         }
+        public BaseItem GetItem(string sName)
+        {
+            BaseItem item = null;
+            if (!dict.TryGetValue(sName, out item))
+            {
+                if (string.IsNullOrEmpty(sName))
+                    return item;
+                System.Type itemType = null;
+                string sFileName = FileUtils.GetPath(sName);
+
+                if (sName.Length == 3)
+                    itemType = typeof(TagItem);
+                else
+                    if (sName.Length == 6)
+                        itemType = typeof(MessageItem);
+                    else
+                        if (sName.IndexOfAny("0123456789".ToCharArray()) == 0)
+                            itemType = typeof(ElementItem);
+                        else
+                            itemType = typeof(ComponentItem);
+                item = LoadFromFile(sFileName, itemType);
+                dict.Add(sName, item);
+            }
+            return item;
+        }
         string GetMessageRegexp(string sName)
         {
             return GetItemRegexp(sName, typeof(MessageItemContainer));
