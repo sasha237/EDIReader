@@ -53,15 +53,18 @@ namespace EDIReader
             ResultlistView.Items.Clear();
             List<BaseParsedItem> items = new List<BaseParsedItem>();
             item.FillList(ref items);
+            List<ListViewItem> listItems = new List<ListViewItem>();
             foreach (var el in items)
             {
-                ListViewItem listItem = ResultlistView.Items.Add(el._Id);
+                ListViewItem listItem =  new ListViewItem(el._Id);
                 listItem.SubItems.Add(el._Name);
                 listItem.SubItems.Add(el._Description);
                 listItem.SubItems.Add(el._ValueId);
                 listItem.SubItems.Add(el._ValueName);
                 listItem.SubItems.Add(el._ValueDescription);
+                listItems.Add(listItem);
             }
+            ResultlistView.Items.AddRange(listItems.ToArray());
         }
 
         private void CheckDictionarybutton_Click(object sender, EventArgs e)
